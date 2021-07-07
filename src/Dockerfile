@@ -9,11 +9,14 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-WORKDIR /
-COPY ["ApiSampleProject/ApiSampleProject.csproj", "ApiSampleProject/"]
-RUN dotnet restore "ApiSampleProject/ApiSampleProject.csproj"
+WORKDIR /src
+
+COPY "ApiSampleProject.csproj" "ApiSampleProject.csproj"
+COPY "docker-compose.dcproj" "docker-compose.dcproj"
+
+RUN dotnet restore "ApiSampleProject.csproj"
 COPY . .
-WORKDIR "ApiSampleProject"
+WORKDIR "/src"
 RUN dotnet build "ApiSampleProject.csproj" -c Release -o /app/build
 
 FROM build AS publish

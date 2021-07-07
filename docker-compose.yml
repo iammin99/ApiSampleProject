@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apisampleproject:
+    image: ${DOCKER_REGISTRY-}apisampleproject
+    build:
+      context: .
+      dockerfile: ApiSampleProject\Dockerfile

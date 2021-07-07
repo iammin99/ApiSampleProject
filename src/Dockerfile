@@ -12,7 +12,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 
 COPY "ApiSampleProject.csproj" "ApiSampleProject.csproj"
-COPY "docker-compose.dcproj" "docker-compose.dcproj"
+COPY "../docker-compose.dcproj" "../docker-compose.dcproj"
 
 RUN dotnet restore "ApiSampleProject.csproj"
 COPY . .
